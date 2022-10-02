@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
+import { Howl, Howler } from "howler";
+import classic from "./assets/classic.mp3";
+import electric from "./assets/electric-guitar.mp3";
+import ghibli from "./assets/ghibli.mp3";
+import harryPotter from "./assets/harry-potter.mp3";
+import jazz from "./assets/jazz.mp3";
+import piano from "./assets/piano.mp3";
 
 const Container = styled.div`
   display: flex;
@@ -19,6 +26,11 @@ const Box = styled(motion.div)`
   grid-template-columns: 1fr 1fr;
   place-items: center;
 `;
+
+const Btn = styled.button`
+  background-color: transparent;
+  border: none;
+`;
 const Icon = styled(motion.svg)`
   width: 22vh;
   height: 22vh;
@@ -28,6 +40,26 @@ const Icon = styled(motion.svg)`
 `;
 
 function App() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const sound = new Howl({
+    src: [ghibli, harryPotter, electric, jazz, piano, classic],
+    onpause: function () {
+      console.log("pause!");
+    },
+    onend: function () {
+      console.log("Finished!");
+    },
+  });
+  const play = () => {
+    sound.once("unlock", function () {
+      sound.play();
+    });
+  };
+  const pause = () => {
+    sound.pause();
+    setIsPlaying(false);
+  };
+
   const boxVariants = {
     start: { scale: 0 },
     end: {
@@ -36,7 +68,7 @@ function App() {
         duration: 1,
         type: "spring",
         bounce: 0.5,
-        delayChildren: 0.2,
+        delayChildren: 0.3,
         staggerChildren: 0.2,
       },
     },
@@ -51,13 +83,23 @@ function App() {
   return (
     <Container>
       <Box variants={boxVariants} initial="start" animate="end">
-        <Icon
-          variants={iconVariants}
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 384 512"
-        >
-          <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
-        </Icon>
+        {isPlaying ? (
+          <Btn onClick={pause}>
+            <Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+              <path d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z" />
+            </Icon>
+          </Btn>
+        ) : (
+          <Btn onClick={play}>
+            <Icon
+              variants={iconVariants}
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 384 512"
+            >
+              <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
+            </Icon>
+          </Btn>
+        )}
 
         <Icon
           variants={iconVariants}

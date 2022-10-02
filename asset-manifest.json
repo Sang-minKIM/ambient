@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.js": "/ambient/static/js/main.ae4bca49.js",
+    "static/js/787.7bae9876.chunk.js": "/ambient/static/js/787.7bae9876.chunk.js",
+    "static/media/jazz.mp3": "/ambient/static/media/jazz.3b2affcba274730c921e.mp3",
+    "static/media/ghibli.mp3": "/ambient/static/media/ghibli.cf5f9f299bf02576f59f.mp3",
+    "static/media/harry-potter.mp3": "/ambient/static/media/harry-potter.51c6059f046ba8835486.mp3",
+    "static/media/piano.mp3": "/ambient/static/media/piano.7aac6b957325ced1c71f.mp3",
+    "static/media/electric-guitar.mp3": "/ambient/static/media/electric-guitar.cba61b8b88a0d13376fe.mp3",
+    "static/media/classic.mp3": "/ambient/static/media/classic.f12e2124fe627276bcee.mp3",
+    "index.html": "/ambient/index.html",
+    "main.ae4bca49.js.map": "/ambient/static/js/main.ae4bca49.js.map",
+    "787.7bae9876.chunk.js.map": "/ambient/static/js/787.7bae9876.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.ae4bca49.js"
+  ]
+}
